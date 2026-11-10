@@ -61,8 +61,7 @@ function pad(n) {
  * но методы getUTC* которого дают «московские» компоненты.
  */
 function getMoscowNow() {
-//   const now = new Date();
-  const now = new Date(_now());
+  const now = new Date();
   return new Date(
     now.getTime() + (MOSCOW_OFFSET_MIN + now.getTimezoneOffset()) * 60 * 1000
   );
@@ -237,8 +236,7 @@ function render(state, nowTs) {
 let celebrationFired = false;
 
 function tick() {
-//   const nowTs = Date.now();
-  const nowTs = _now();
+  const nowTs = Date.now();
   const state = getState(nowTs);
 
   if (state.mode === 'celebration' && !celebrationFired) {
