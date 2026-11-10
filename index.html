@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon: тортик со свечкой -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🎂</text></svg>">
+  <title>С днём рождения, Евгений! 🎉</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="sparkles-canvas"></canvas>
+    <div class="card">
+        <div class="balloons">
+            <span class="balloon balloon-1"></span>
+            <span class="balloon balloon-2"></span>
+            <span class="balloon balloon-3"></span>
+            <span class="balloon balloon-4"></span>
+        </div>
+
+        <h1 class="title">Скоро день рождения! 🎂</h1>
+
+        <p class="subtitle">До праздника осталось:</p>
+
+        <!-- Таймер -->
+        <div class="timer" id="timer">
+            <div class="time-block">
+            <span class="time-value" id="days">00</span>
+            <span class="time-label">дней</span>
+            </div>
+            <div class="time-block">
+            <span class="time-value" id="hours">00</span>
+            <span class="time-label">часов</span>
+            </div>
+            <div class="time-block">
+            <span class="time-value" id="minutes">00</span>
+            <span class="time-label">минут</span>
+            </div>
+            <div class="time-block">
+            <span class="time-value" id="seconds">00</span>
+            <span class="time-label">секунд</span>
+            </div>
+        </div>
+
+        <!-- Блок поздравления (скрыт по умолчанию) -->
+        <div class="congrats hidden" id="congrats">
+            <h2 class="congrats-title">🎉 С Днём Рождения, Евгений! 🎉</h2>
+            <p class="congrats-text">
+            Пусть этот год принесёт море радости, ярких событий и исполнения желаний! ✨
+            </p>
+        </div>
+        <button class="music-btn" id="music-btn" type="button" aria-label="Включить музыку">
+            <span class="music-icon">🎵</span>
+            <span class="music-text">Включить музыку</span>
+            </button>
+        <audio id="bg-music" src="music.ogg" loop preload="none"></audio>
+        <button class="share-btn" id="share-btn" type="button" aria-label="Поделиться ссылкой">
+            <span class="share-icon">🔗</span>
+            <span class="share-text">Поделиться</span>
+        </button>
+    </div>
+    
+    <canvas id="confetti-canvas"></canvas>
+  <script src="script.js"></script>
+</body>
+</html>

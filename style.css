@@ -1,0 +1,443 @@
+/* === Сброс === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* === Основной фон (тёмная тема) === */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(196, 77, 255, 0.25), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(255, 107, 157, 0.20), transparent 50%),
+    linear-gradient(135deg, #0f0c29 0%, #1a1440 50%, #24243e 100%);
+  background-attachment: fixed;
+  color: #e8e8f0;
+  overflow-x: hidden;
+}
+
+/* === Карточка === */
+.card {
+  position: relative;
+  background: rgba(30, 27, 60, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 40px 30px;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  animation: fadeIn 0.8s ease-out;
+  z-index: 2;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* === Заголовки === */
+.title {
+  font-size: 2rem;
+  margin-bottom: 12px;
+  background: linear-gradient(45deg, #ff6b9d, #c44dff, #ffd93d, #ff6b9d);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  background-size: 300% 300%;
+  animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #a8a8c0;
+  margin-bottom: 24px;
+}
+
+/* === Таймер === */
+.timer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.time-block {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  border: 1px solid rgba(196, 77, 255, 0.25);
+  border-radius: 16px;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow:
+    0 6px 20px rgba(196, 77, 255, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.time-block:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(196, 77, 255, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.time-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ffd93d;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(255, 217, 61, 0.4);
+}
+
+.time-label {
+  font-size: 0.75rem;
+  color: #8b8ba8;
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === Блок поздравления === */
+.congrats {
+  margin-top: 10px;
+  padding: 24px 20px;
+  background: linear-gradient(145deg, rgba(255, 107, 157, 0.15), rgba(196, 77, 255, 0.15));
+  border: 1px solid rgba(255, 217, 61, 0.3);
+  border-radius: 18px;
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 30px rgba(196, 77, 255, 0.3); }
+  50%      { box-shadow: 0 0 50px rgba(255, 217, 61, 0.5); }
+}
+
+.congrats-title {
+  font-size: 1.6rem;
+  color: #ffd93d;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px rgba(255, 217, 61, 0.5);
+}
+
+.congrats-text {
+  font-size: 1.05rem;
+  color: #d0d0e0;
+  line-height: 1.6;
+}
+
+/* === Воздушные шарики (декор) === */
+.balloons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  width: 46px;
+  height: 56px;
+  border-radius: 50% 50% 50% 50% / 55% 55% 45% 45%;
+  opacity: 0.75;
+  animation: float 6s ease-in-out infinite;
+}
+
+.balloon::after {
+  /* верёвочка */
+  content: '';
+  position: absolute;
+  bottom: -22px;
+  left: 50%;
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.35);
+  transform: translateX(-50%);
+}
+
+.balloon::before {
+  /* блик */
+  content: '';
+  position: absolute;
+  top: 12%;
+  left: 22%;
+  width: 12px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  filter: blur(1px);
+}
+
+.balloon-1 {
+  top: 6%;
+  left: 6%;
+  background: radial-gradient(circle at 30% 30%, #ff6b9d, #c44dff);
+  animation-delay: 0s;
+}
+.balloon-2 {
+  top: 10%;
+  right: 8%;
+  background: radial-gradient(circle at 30% 30%, #ffd93d, #ff8c42);
+  animation-delay: 1.2s;
+  width: 38px;
+  height: 46px;
+}
+.balloon-3 {
+  bottom: 8%;
+  left: 10%;
+  background: radial-gradient(circle at 30% 30%, #4dd0ff, #6b6bff);
+  animation-delay: 2.4s;
+  width: 42px;
+  height: 50px;
+}
+.balloon-4 {
+  bottom: 6%;
+  right: 7%;
+  background: radial-gradient(circle at 30% 30%, #6bff9d, #2dd4a4);
+  animation-delay: 3.6s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%      { transform: translateY(-14px) rotate(2deg); }
+}
+
+/* === Утилиты === */
+.hidden {
+  display: none;
+}
+
+/* === Планшеты === */
+@media (max-width: 700px) {
+  .card {
+    padding: 32px 20px;
+  }
+
+  .title {
+    font-size: 1.7rem;
+  }
+
+  .time-value {
+    font-size: 1.7rem;
+  }
+}
+
+/* === Мобильные (таймер в ОДНУ строку) === */
+@media (max-width: 520px) {
+  body {
+    padding: 12px;
+  }
+
+  .card {
+    padding: 24px 12px;
+    border-radius: 18px;
+  }
+
+  .title {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 14px;
+  }
+
+  /* Ключевое: 4 колонки, компактные отступы */
+  .timer {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+
+  .time-block {
+    padding: 10px 2px;
+    border-radius: 12px;
+  }
+
+  .time-value {
+    font-size: clamp(1.1rem, 6vw, 1.6rem);
+  }
+
+  .time-label {
+    font-size: clamp(0.55rem, 2.6vw, 0.7rem);
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .congrats {
+    padding: 16px 12px;
+  }
+
+  .congrats-title {
+    font-size: 1.15rem;
+  }
+
+  .congrats-text {
+    font-size: 0.9rem;
+  }
+
+  .balloon {
+    opacity: 0.45;
+    transform: scale(0.8);
+  }
+}
+
+/* === Очень узкие экраны (iPhone SE и подобные, ~320px) === */
+@media (max-width: 360px) {
+  .time-value {
+    font-size: 1rem;
+  }
+
+  .time-label {
+    font-size: 0.55rem;
+  }
+
+  .time-block {
+    padding: 8px 1px;
+  }
+}
+
+/* === Конфетти-канвас === */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* === Кнопка «Поделиться» === */
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 12px 22px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a1440;
+  background: linear-gradient(135deg, #ffd93d, #ffb84d);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow:
+    0 6px 20px rgba(255, 217, 61, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.share-btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 10px 28px rgba(255, 217, 61, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.share-btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.share-btn.copied {
+  background: linear-gradient(135deg, #6bff9d, #2dd4a4);
+  box-shadow: 0 6px 20px rgba(107, 255, 157, 0.4);
+}
+
+.share-icon {
+  font-size: 1.1em;
+}
+
+@media (max-width: 520px) {
+  .share-btn {
+    margin-top: 16px;
+    padding: 11px 18px;
+    font-size: 0.9rem;
+  }
+}
+
+/* === Кнопка «Музыка» === */
+.music-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+  margin-right: 10px;
+  padding: 12px 22px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e8e8f0;
+  background: rgba(196, 77, 255, 0.18);
+  border: 1px solid rgba(196, 77, 255, 0.45);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.music-btn:hover {
+  transform: translateY(-2px);
+  background: rgba(196, 77, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(196, 77, 255, 0.35);
+}
+
+.music-btn.playing {
+  background: rgba(107, 255, 157, 0.18);
+  border-color: rgba(107, 255, 157, 0.55);
+  box-shadow: 0 8px 24px rgba(107, 255, 157, 0.3);
+}
+
+.music-icon {
+  font-size: 1.1em;
+}
+
+.music-btn.playing .music-icon {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 520px) {
+  .music-btn {
+    margin-top: 16px;
+    margin-right: 0;
+    padding: 11px 18px;
+    font-size: 0.9rem;
+  }
+}
+/* === Фоновые искры === */
+#sparkles-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+/* Убедимся, что карточка выше искр */
+.card {
+  z-index: 2;
+}
